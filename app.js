@@ -65,10 +65,12 @@ function TennisCalendar() {
         }
     }, [schedule]);
 
-    const loadFromFirebase = async () => {
+const loadFromFirebase = async () => {
     try {
         setSyncStatus('Loading...');
-        const docRef = db.collection('calendars').doc(userId);
+        
+        // Load from the SHARED document
+        const docRef = db.collection('calendars').doc(CALENDAR_DOC_ID);
         const doc = await docRef.get();
         
         if (doc.exists) {
@@ -83,7 +85,7 @@ function TennisCalendar() {
             setSchedule(reconstructedSchedule);
             setSyncStatus('Synced');
         } else {
-            // First time user - save initial schedule
+            // First time - save initial schedule
             await saveToFirebase();
         }
         setLoading(false);
@@ -95,7 +97,8 @@ function TennisCalendar() {
 };
 
 
-    const saveToFirebase = async () => {
+
+const saveToFirebase = async () => {
     try {
         setSyncStatus('Saving...');
         
@@ -106,7 +109,8 @@ function TennisCalendar() {
             dayIndex: index % 7
         }));
         
-        await db.collection('calendars').doc(userId).set({
+        // Save to the SHARED document (not user-specific)
+        await db.collection('calendars').doc(CALENDAR_DOC_ID).set({
             schedule: flatSchedule,
             lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
         });
@@ -123,6 +127,7 @@ function TennisCalendar() {
         setSyncStatus('Error saving');
     }
 };
+
 
 
     const getActivityColor = (type) => {

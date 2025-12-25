@@ -13,12 +13,8 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-// Simple user ID
-let userId = localStorage.getItem('tennisCalendarUserId');
-if (!userId) {
-    userId = 'user_' + Math.random().toString(36).substr(2, 9);
-    localStorage.setItem('tennisCalendarUserId', userId);
-}
+// FIXED DOCUMENT ID - Everyone uses the same one!
+const CALENDAR_DOC_ID = 'tennis-calendar-cycle-2';
 
 // Debug: verify it loaded
 console.log('✅ Firebase config loaded');
