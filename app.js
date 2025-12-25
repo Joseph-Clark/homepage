@@ -1,92 +1,31 @@
+// TEST CODE - Add at the very top of app.js
+console.log('=== CHECKING FIREBASE ===');
+console.log('firebase available?', typeof firebase !== 'undefined');
+console.log('db available?', typeof db !== 'undefined');
+console.log('userId available?', typeof userId !== 'undefined');
+console.log('========================');
+
+
+
 const { useState, useEffect } = React;
 
-const workoutAProgram = `WARM-UP
-- Leg swings (front & side) - 10 each leg
-- Hip openers (walking) - 5 each side
-- Inchworms w/ push-up - 5 reps
-- Walking lunges w/ torso twist - 6 each side
-- Mini-band lateral walks - 2×10 steps each way
-- A-skips or high knees - 2×20 yds
-
-PLYOMETRICS
-- Pogo Jumps - 3×20 sec
-- Quick Single-Leg Hops (in place) - 3×6 each leg
-- Lateral Skater Bounds - 3×6 each side
-
-STRENGTH
-- Kettlebell RDLs - 3×8
-- Chin-Ups - 3×AMRAP
-- Bulgarian Split Squat - 3×6 each side
-
-TENNIS ACCESSORIES
-- Rotational Band Press (explosive) - 3×6-8 each side
-- Lateral Lunge w/ Step or Slide - 3×8 each side
-
-CORE/STABILITY
-- Pallof Press (anti-rotation) - 2×10 each side
-- Side Plank with Hip Lift - 2×20-30 sec each side
-
-COOL-DOWN
-- Light jog or bike - 2-3 min
-- Stretching routine - 5 min total`;
-
-const workoutBProgram = `WARM-UP
-- Thread the needle - 5 each side
-- Hip lifts - 8 reps
-- Cossack squats - 5 each side
-- Inchworms - 5 reps
-- Lateral hip openers - 8 each side
-- Jumping jacks - 20 reps
-- Arm circles (forward/back) - 10 each direction
-
-PLYOMETRICS
-- Bunny Hops - 3×5 reps
-- Single Leg Bounds - 3×5 each leg
-- Snap Down to Single Leg Jump - 3×6 each leg
-
-STRENGTH
-- 3-Point Dumbbell Row - 3×8 each side (45lbs)
-- Alternating DB Chest Press - 3×8 each side (55lbs)
-
-PT/REHAB
-- Single Leg Calf Raises - 3×15 each leg
-- Isometric Calf Raise Rotations - 3×20s each direction
-
-TENNIS ACCESSORIES
-- Kneeling DB Press - 3×10 each side (25-30lbs)
-- Single Leg RDL - 3×10 each side (15lbs)
-
-ARM DEVELOPMENT
-- Hammer Curls - 2×10-12
-- Single Arm Tricep Extension - 2×8 each side
-
-CORE/STABILITY
-- Split Rope Chop - 2×8 each side (50lbs)
-- Side Plank Leg Lifts - 2×8 each side
-
-COOL-DOWN
-- Lower back stretch
-- Crossbody lat stretch
-- Couch stretch or hip flexor stretch
-- Standing T chest stretch
-- Standing overhead tricep stretch`;
 
 const initialSchedule = [
     [
-        { date: 'Fri 12/12', activity: 'Workout B', type: 'lift', details: '', notes: workoutBProgram, completed: false, shoulderRehab: true },
+        { date: 'Fri 12/12', activity: 'Workout B', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: true },
         { date: 'Sat 12/13', activity: 'Hit', type: 'tennis', details: 'Ball Machine and/or Jeff', notes: '', completed: false, shoulderRehab: false },
         { date: 'Sun 12/14', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
         { date: 'Mon 12/15', activity: 'Active Recovery', type: 'active', details: 'Mobility/Stretching', notes: '', completed: false, shoulderRehab: false },
         { date: 'Tue 12/16', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
         { date: 'Wed 12/17', activity: 'Tennis Clinic 5:00 PM', type: 'tennis', details: 'Advanced Live Ball (60 min)', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Thu 12/18', activity: 'Workout A', type: 'lift', details: '', notes: workoutAProgram, completed: false, shoulderRehab: false }
+        { date: 'Thu 12/18', activity: 'Workout A', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false }
     ],
     [
         { date: 'Fri 12/19', activity: 'Hit', type: 'tennis', details: 'Jeff/Jeremy or Solo', notes: '', completed: false, shoulderRehab: false },
         { date: 'Sat 12/20', activity: 'Active Recovery', type: 'active', details: 'Arm Rehab', notes: '', completed: false, shoulderRehab: true },
         { date: 'Sun 12/21', activity: 'Tennis Clinic 12:00 PM', type: 'tennis', details: 'Adult Intermediate 3.5+', notes: '', completed: false, shoulderRehab: false },
         { date: 'Mon 12/22', activity: 'Private Lesson', type: 'tennis', details: 'Private Lesson', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Tue 12/23', activity: 'Workout B', type: 'lift', details: '', notes: workoutBProgram, completed: false, shoulderRehab: false },
+        { date: 'Tue 12/23', activity: 'Workout B', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false },
         { date: 'Wed 12/24', activity: 'REST DAY', type: 'rest', details: 'Christmas Eve', notes: '', completed: false, shoulderRehab: false },
         { date: 'Thu 12/25', activity: 'REST DAY', type: 'rest', details: 'Christmas Day', notes: '', completed: false, shoulderRehab: false }
     ],
@@ -94,7 +33,7 @@ const initialSchedule = [
         { date: 'Fri 12/26', activity: 'Hit', type: 'tennis', details: 'Jeff/Jeremy or Solo', notes: '', completed: false, shoulderRehab: false },
         { date: 'Sat 12/27', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
         { date: 'Sun 12/28', activity: 'Hit', type: 'tennis', details: 'Add session if available', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Mon 12/29', activity: 'Workout A', type: 'lift', details: '', notes: workoutAProgram, completed: false, shoulderRehab: false },
+        { date: 'Mon 12/29', activity: 'Workout A', type: 'lift', details: '', notes: " ", completed: false, shoulderRehab: false },
         { date: 'Tue 12/30', activity: 'Active Recovery', type: 'active', details: 'Mobility/Stretching', notes: '', completed: false, shoulderRehab: false },
         { date: 'Wed 12/31', activity: 'REST DAY', type: 'rest', details: "New Year's Eve", notes: '', completed: false, shoulderRehab: false },
         { date: 'Thu 1/1', activity: 'REST DAY', type: 'rest', details: "New Year's Day", notes: '', completed: false, shoulderRehab: false }
@@ -127,46 +66,64 @@ function TennisCalendar() {
     }, [schedule]);
 
     const loadFromFirebase = async () => {
-        try {
-            setSyncStatus('Loading...');
-            const docRef = db.collection('calendars').doc(userId);
-            const doc = await docRef.get();
+    try {
+        setSyncStatus('Loading...');
+        const docRef = db.collection('calendars').doc(userId);
+        const doc = await docRef.get();
+        
+        if (doc.exists) {
+            const data = doc.data();
             
-            if (doc.exists) {
-                const data = doc.data();
-                setSchedule(data.schedule);
-                setSyncStatus('Synced');
-            } else {
-                // First time user - save initial schedule
-                await saveToFirebase();
-            }
-            setLoading(false);
-        } catch (error) {
-            console.error('Error loading from Firebase:', error);
-            setSyncStatus('Error loading');
-            setLoading(false);
+            // Reconstruct the nested array structure from flat data
+            const reconstructedSchedule = [[], [], []]; // 3 weeks
+            data.schedule.forEach(day => {
+                reconstructedSchedule[day.weekIndex][day.dayIndex] = day;
+            });
+            
+            setSchedule(reconstructedSchedule);
+            setSyncStatus('Synced');
+        } else {
+            // First time user - save initial schedule
+            await saveToFirebase();
         }
-    };
+        setLoading(false);
+    } catch (error) {
+        console.error('Error loading from Firebase:', error);
+        setSyncStatus('Error loading');
+        setLoading(false);
+    }
+};
+
 
     const saveToFirebase = async () => {
-        try {
-            setSyncStatus('Saving...');
-            await db.collection('calendars').doc(userId).set({
-                schedule: schedule,
-                lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
-            });
-            setLastSaved(new Date());
-            setSyncStatus('Synced ✓');
-            setShowSaveNotification(true);
-            setTimeout(() => {
-                setShowSaveNotification(false);
-                setSyncStatus('Synced');
-            }, 2000);
-        } catch (error) {
-            console.error('Error saving to Firebase:', error);
-            setSyncStatus('Error saving');
-        }
-    };
+    try {
+        setSyncStatus('Saving...');
+        
+        // Flatten the schedule for Firebase (it doesn't support nested arrays)
+        const flatSchedule = schedule.flat().map((day, index) => ({
+            ...day,
+            weekIndex: Math.floor(index / 7),
+            dayIndex: index % 7
+        }));
+        
+        await db.collection('calendars').doc(userId).set({
+            schedule: flatSchedule,
+            lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        
+        setLastSaved(new Date());
+        setSyncStatus('Synced ✓');
+        setShowSaveNotification(true);
+        setTimeout(() => {
+            setShowSaveNotification(false);
+            setSyncStatus('Synced');
+        }, 2000);
+    } catch (error) {
+        console.error('Error saving to Firebase:', error);
+        setSyncStatus('Error saving');
+    }
+};
+
 
     const getActivityColor = (type) => {
         const colors = {
