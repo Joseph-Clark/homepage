@@ -311,7 +311,7 @@ const saveToFirebase = async () => {
                             }, day.completed && '✓'),
                             React.createElement('div', { className: 'day-date' }, day.date),
                             React.createElement('div', { className: 'day-activity' }, day.activity),
-                            day.details && day.type !== 'lift' && React.createElement('div', { className: 'day-details' }, day.details),
+                            day.details && React.createElement('div', { className: 'day-details' }, day.details),
                             day.shoulderRehab && React.createElement('div', { className: 'shoulder-rehab-badge' }, '💪')
                         )
                     )
@@ -347,7 +347,7 @@ const saveToFirebase = async () => {
                     })
                 ),
 
-                editType !== 'lift' && React.createElement('div', { className: 'form-group' },
+                 React.createElement('div', { className: 'form-group' },
                     React.createElement('label', { className: 'form-label' }, 'Subtitle/Details:'),
                     React.createElement('input', {
                         type: 'text',
