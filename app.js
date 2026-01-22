@@ -11,37 +11,38 @@ const { useState, useEffect } = React;
 
 
 const initialSchedule = [
-    // Week 1: Jan 2-8, 2025
+    // Week 1: Jan 23-29, 2026
     [
-        { date: 'Fri 1/2', activity: 'Workout B', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false },
-        { date: 'Sat 1/3', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Sun 1/4', activity: 'Active Recovery', type: 'active', details: 'Mobility/Stretching', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Mon 1/5', activity: 'Workout A', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false },
-        { date: 'Tue 1/6', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Wed 1/7', activity: 'Hit', type: 'tennis', details: 'Ball Machine/Hit', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Thu 1/8', activity: 'Tennis Lesson', type: 'tennis', details: 'Private Lesson', notes: '', completed: false, shoulderRehab: false }
+        { date: 'Fri 1/23', activity: 'Tennis Hit', type: 'tennis', details: 'Jeremy', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Sat 1/24', activity: 'Workout A', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false },
+        { date: 'Sun 1/25', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Mon 1/26', activity: 'Tennis Clinic 7:00 PM', type: 'tennis', details: '', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Tue 1/27', activity: 'Active Recovery', type: 'active', details: 'Mobility/Stretching', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Wed 1/28', activity: 'Tennis Clinic 5:00 PM', type: 'tennis', details: '', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Thu 1/29', activity: 'Workout B', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false }
     ],
-    // Week 2: Jan 9-15, 2025
+    // Week 2: Jan 30 - Feb 5, 2026
     [
-        { date: 'Fri 1/9', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Sat 1/10', activity: 'Workout B', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false },
-        { date: 'Sun 1/11', activity: 'Active Recovery', type: 'active', details: 'Mobility/Stretching', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Mon 1/12', activity: 'Hit', type: 'tennis', details: 'Ball Machine/Hit', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Tue 1/13', activity: 'Tennis Clinic 6:00 PM', type: 'tennis', details: 'Adult Intermediate (Brandon Fisher)', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Wed 1/14', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Thu 1/15', activity: 'Workout A', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false }
+        { date: 'Fri 1/30', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Sat 1/31', activity: 'Hit', type: 'tennis', details: 'Ball Machine/Hit', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Sun 2/1', activity: 'Active Recovery', type: 'active', details: 'Mobility/Stretching', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Mon 2/2', activity: 'Workout B', type: 'lift', details: 'OC', notes: "", completed: false, shoulderRehab: false },
+        { date: 'Tue 2/3', activity: 'REST DAY', type: 'rest', details: 'OC', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Wed 2/4', activity: 'Tennis Lesson', type: 'tennis', details: 'OC - TBD', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Thu 2/5', activity: 'REST DAY', type: 'rest', details: 'OC', notes: '', completed: false, shoulderRehab: false }
     ],
-    // Week 3: Jan 16-22, 2025
+    // Week 3: Feb 6-12, 2026
     [
-        { date: 'Fri 1/16', activity: 'Hit', type: 'tennis', details: 'Ball Machine/Hit', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Sat 1/17', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Sun 1/18', activity: 'Tennis Clinic 12:00 PM', type: 'tennis', details: 'Adult Intermediate 3.5+ (Evan Abbott)', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Mon 1/19', activity: 'Hit', type: 'tennis', details: 'Ball Machine/Hit', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Tue 1/20', activity: 'Tennis Clinic 6:00 PM', type: 'tennis', details: 'Adult Intermediate (Brandon Fisher)', notes: '', completed: false, shoulderRehab: false },
-        { date: 'Wed 1/21', activity: 'Workout B', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false },
-        { date: 'Thu 1/22', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false }
+        { date: 'Fri 2/6', activity: 'Workout A', type: 'lift', details: 'OC', notes: "", completed: false, shoulderRehab: false },
+        { date: 'Sat 2/7', activity: 'Hit', type: 'tennis', details: 'TBD', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Sun 2/8', activity: 'Hit', type: 'tennis', details: 'Ball Machine', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Mon 2/9', activity: 'Tennis Lesson', type: 'tennis', details: 'Private Lesson', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Tue 2/10', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false },
+        { date: 'Wed 2/11', activity: 'Workout A', type: 'lift', details: '', notes: "", completed: false, shoulderRehab: false },
+        { date: 'Thu 2/12', activity: 'REST DAY', type: 'rest', details: '', notes: '', completed: false, shoulderRehab: false }
     ]
 ];
+
 
 
 function TennisCalendar() {
@@ -254,8 +255,8 @@ const saveToFirebase = async () => {
     const shoulderRehabDays = allDays.filter(d => d.shoulderRehab);
 
     return React.createElement('div', { className: 'container' },
-        React.createElement('h1', { className: 'header-title' }, '3-Week Workout + Tennis Schedule - Cycle 3'),
-        React.createElement('p', { className: 'header-subtitle' }, 'January 2 - January 22, 2025'),
+        React.createElement('h1', { className: 'header-title' }, '3-Week Workout + Tennis Schedule - Cycle 4'),
+        React.createElement('p', { className: 'header-subtitle' }, 'January 23 - February 12, 2026'),
         React.createElement('p', { className: 'header-instructions' }, 'Click any day to edit • Click checkmark to mark complete'),
         
         React.createElement('div', { className: 'controls' },
